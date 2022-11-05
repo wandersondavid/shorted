@@ -15,8 +15,8 @@ model shortener_link {
   original_link    String        @map("original-link") @db.VarChar(45)
   created_at       DateTime?     @default(now()) @db.DateTime(0)
   updated_at       DateTime?     @default(now()) @db.DateTime(0)
-  user_iduser      String        @db.VarChar(36)
-  user             user          @relation(fields: [user_iduser], references: [iduser], onDelete: NoAction, onUpdate: NoAction, map: "fk_shortener_link_user1")
+  user_iduser      String?       @db.VarChar(36)
+  user             user?         @relation(fields: [user_iduser], references: [iduser], onDelete: NoAction, onUpdate: NoAction, map: "fk_shortener_link_user1")
   time_access      time_access[]
 
   @@index([user_iduser], map: "fk_shortener_link_user1_idx")
