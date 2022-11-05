@@ -9,7 +9,8 @@
     "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
     "start:dev": "nodemon",
-    "model": "npx prisma introspect"
+    "model": "npx prisma introspect",
+    "studio": "npx prisma studio"
   },
   "keywords": [],
   "author": "",
