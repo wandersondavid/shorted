@@ -12,12 +12,4 @@ app.use('/api/v1', index);
 
 app.listen(PORT, () => {
     console.log(`Sever is listenin on port ${PORT}`)
-})
-
-// const getError = (errors: string) => {
-//     return {
-//         errors: {
-//             body: errors.split(':::'),
-//         }
-//     }
-// }
+});
