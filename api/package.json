@@ -8,7 +8,8 @@
     "dev": "nodemon --exec sucrase-node src/index.ts",
     "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "model": "npx prisma introspect"
   },
   "keywords": [],
   "author": "",
