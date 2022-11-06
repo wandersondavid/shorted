@@ -40,7 +40,7 @@ shortUrlRoutes.get(
         counting_usage: countingUsage,
       },
     });
-    res.send({ data: { link: data?.original_link, countingUsage } });
+    res.send({ data: { link: data?.original_link } });
   }
 );
 
@@ -51,8 +51,8 @@ shortUrlRoutes.post(
 
     const code = geraStringAleatoria(7);
     const urlBase = process.env["BASE_URL_FRONT"];
-
     const shortLink = `${urlBase}/link/${code}`;
+
     try {
       const add = await dataBase.shortener_link.create({
         data: {
