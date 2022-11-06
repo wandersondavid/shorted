@@ -6,8 +6,15 @@ const shortUrlRoutes = Router();
 
 shortUrlRoutes.get(
   "/shortener/link/:code/status",
-  (req: Request, res: Response) => {
-    res.send({ data: req.params });
+  async (req: Request, res: Response) => {
+    const { code } = req.params;
+    const data = await dataBase.shortener_link.findUnique({
+      where: {
+        code,
+      },
+    });
+
+    res.send({ data: { use: data?.counting_usage } });
   }
 );
 
@@ -23,7 +30,7 @@ shortUrlRoutes.get(
 
     let countingUsage = data?.counting_usage ?? 1;
 
-    countingUsage++
+    countingUsage++;
 
     await dataBase.shortener_link.update({
       where: {
@@ -34,7 +41,6 @@ shortUrlRoutes.get(
       },
     });
     res.send({ data: { link: data?.original_link, countingUsage } });
-
   }
 );
 
