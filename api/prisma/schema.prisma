@@ -16,6 +16,7 @@ model shortener_link {
   created_at       DateTime?     @default(now()) @db.DateTime(0)
   updated_at       DateTime?     @default(now()) @db.DateTime(0)
   user_iduser      String?       @db.VarChar(36)
+  counting_usage   Int?          @default(0)
   user             user?         @relation(fields: [user_iduser], references: [iduser], onDelete: NoAction, onUpdate: NoAction, map: "fk_shortener_link_user1")
   time_access      time_access[]
 

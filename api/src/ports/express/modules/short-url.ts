@@ -11,45 +11,69 @@ shortUrlRoutes.get(
   }
 );
 
-shortUrlRoutes.get("/shortener/link/:code", (req: Request, res: Response) => {
-  req.params;
-  res.send({ data: req.params });
-});
+shortUrlRoutes.get(
+  "/shortener/link/:code",
+  async (req: Request, res: Response) => {
+    const { code } = req.params;
+    const data = await dataBase.shortener_link.findUnique({
+      where: {
+        code,
+      },
+    });
 
-shortUrlRoutes.post("/shortener/link", async (req: Request, res: Response) => {
-  const {originalLink } = req.body.shortener;
+    let countingUsage = data?.counting_usage ?? 1;
 
-  const code  = geraStringAleatoria(7);
-  const urlBase = process.env['BASE_URL_FRONT'];
+    countingUsage++
 
-  console.log(urlBase)
-  const shortLink = `${urlBase}/link/${code}`
-try {
-  const add = await dataBase.shortener_link.create({
-    data: {
-      idshortener_link: uuidv4(),
-      code,
-      original_link: originalLink,
-      short_link:shortLink,
-    },
-  });
+    await dataBase.shortener_link.update({
+      where: {
+        code,
+      },
+      data: {
+        counting_usage: countingUsage,
+      },
+    });
+    res.send({ data: { link: data?.original_link, countingUsage } });
 
-  res.send({ add });
-} catch (error) {
-    throw error;
-}
+  }
+);
 
-});
+shortUrlRoutes.post(
+  "/shortener/link",
+  async (req: Request, res: Response, next) => {
+    const { originalLink } = req.body.shortener;
 
+    const code = geraStringAleatoria(7);
+    const urlBase = process.env["BASE_URL_FRONT"];
 
+    const shortLink = `${urlBase}/link/${code}`;
+    try {
+      const add = await dataBase.shortener_link.create({
+        data: {
+          idshortener_link: uuidv4(),
+          code,
+          original_link: originalLink,
+          short_link: shortLink,
+        },
+      });
+
+      res.send({ data: add.short_link });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 const geraStringAleatoria = (tamanho: number) => {
-  var stringAleatoria = '';
-  var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var stringAleatoria = "";
+  var caracteres =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   for (let i = 0; i < tamanho; i++) {
-      stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    stringAleatoria += caracteres.charAt(
+      Math.floor(Math.random() * caracteres.length)
+    );
   }
   return stringAleatoria;
-}
+};
 
 export { shortUrlRoutes };
