@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import StitchesLogo from '../components/StitchesLogo'
-import { darkTheme, styled } from '../stitches.config'
+import {  styled } from '../stitches.config'
 
-const Box = styled('div', {
-  backgroundColor: '$pr'
-})
+const Box = styled('div', {})
 
 const Text = styled('p', {
   fontFamily: '$system',
