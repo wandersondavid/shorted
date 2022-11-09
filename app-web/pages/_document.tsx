@@ -1,9 +1,7 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 import { darkTheme, getCssText, styled } from '../stitches.config'
 
-const Body = styled('body', {
-  backgroundColor: '$primary'
-})
+const Body = styled('body', {})
 
 
 export default function MyDocument() {
@@ -15,7 +13,7 @@ export default function MyDocument() {
           dangerouslySetInnerHTML={{ __html: getCssText() }}
         />
       </Head>
-      <Body className={darkTheme}>
+      <Body >
         <Main />
         <NextScript />
       </Body>
