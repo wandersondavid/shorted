@@ -10,12 +10,23 @@ const HandlerError = (err: DefaultErrorInput,_req: Request, res: Response, _next
 
     res.status(err?.code || 500)
 
-    res.json({ error: {
-            code: err.code,
-            name: err.name,
-            message: err.message
-        }
-    })
+    try {
+
+        res.json({ error: {
+                code: err.code,
+                name: err.name,
+                message: err.message,
+            }
+        })
+
+    } catch (err) {
+        res.json({ error: {
+                code: 555,
+                name: 'Error Interno',
+                message: 'Error Interno'
+            }
+        })
+    }
 }
 
 export { HandlerError, HandlerErrorNotFound };
