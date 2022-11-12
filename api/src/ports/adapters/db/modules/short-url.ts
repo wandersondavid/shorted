@@ -25,7 +25,28 @@ const createShortLinkInDB = async (originalLink: string) => {
   }
 };
 
-export { createShortLinkInDB };
+
+const getShortLinkByCodeInDB = async (code: string) => {
+
+
+  const result = await db.getShortLinkByCodeInDB(code)
+
+
+  return {
+    shortLink: result?.short_link ?? undefined
+  }
+};
+
+const countingUsageShortLinkByCodeInDB = async ( code: string) => {
+
+  const result = await db.countingUsageShortLinkByCodeInDB(code)
+
+  return {
+    countingUsage: result ?? undefined
+  }
+}
+
+export { createShortLinkInDB, getShortLinkByCodeInDB, countingUsageShortLinkByCodeInDB };
 
 
 const geraStringAleatoria = (tamanho: number) => {

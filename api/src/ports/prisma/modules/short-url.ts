@@ -1,5 +1,5 @@
 import { ShortLink } from "@/core/link/types";
-import { DefaultError } from "@/helpers/errors";
+import { DefaultError, NotFoundError } from "@/helpers/errors";
 
 import { shortener_link } from "@prisma/client";
 
@@ -28,4 +28,57 @@ const createShortLinkInDB = async (
   }
 };
 
-export { createShortLinkInDB };
+type code = {
+  short_link: string;
+};
+
+const getShortLinkByCodeInDB = async (
+  code: string
+): Promise<code | undefined> => {
+  try {
+    const result = await dataBase.shortener_link.findUnique({
+      where: {
+        code: code,
+      },
+    });
+
+    let countingUsage = result?.counting_usage ?? 1;
+
+    countingUsage++;
+
+    await dataBase.shortener_link.update({
+      where: {
+        code,
+      },
+      data: {
+        counting_usage: countingUsage,
+      },
+    });
+
+    return result ?? undefined;
+  } catch (error) {
+    throw new NotFoundError("Url não encotrada");
+  }
+};
+
+const countingUsageShortLinkByCodeInDB = async (
+  code: string
+): Promise<unknown> => {
+  try {
+    const result = await dataBase.shortener_link.findUnique({
+      where: {
+        code,
+      },
+    });
+
+    return result?.counting_usage ?? undefined;
+  } catch (error) {
+    throw new NotFoundError("Url não encotrada");
+  }
+};
+
+export {
+  createShortLinkInDB,
+  getShortLinkByCodeInDB,
+  countingUsageShortLinkByCodeInDB,
+};
