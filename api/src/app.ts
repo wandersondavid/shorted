@@ -1,1 +1,1 @@
-import './ports/express/sever'
+import '@/ports/adapters/http'

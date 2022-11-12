@@ -1,95 +1,69 @@
-import { dataBase } from "@/ports/db-prisma";
+import { shortenerLink } from "@/ports/adapters/http/mudules/short-url";
 import { Router, Response, Request } from "express";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 const shortUrlRoutes = Router();
 
-shortUrlRoutes.get(
-  "/shortener/link/:code/status",
-  async (req: Request, res: Response, next) => {
-    const { code } = req.params;
+// shortUrlRoutes.get(
+//   "/shortener/link/:code/status",
+//   async (req: Request, res: Response, next) => {
+//     const { code } = req.params;
 
-    try {
-      const data = await dataBase.shortener_link.findUnique({
-        where: {
-          code,
-        },
-      });
+//     try {
+//       const data = await dataBase.shortener_link.findUnique({
+//         where: {
+//           code,
+//         },
+//       });
 
-      res.send({ data: { use: data?.counting_usage } });
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+//       res.send({ data: { use: data?.counting_usage } });
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
 
-shortUrlRoutes.get(
-  "/shortener/link/:code",
-  async (req: Request, res: Response, next) => {
-    const { code } = req.params;
+// shortUrlRoutes.get(
+//   "/shortener/link/:code",
+//   async (req: Request, res: Response, next) => {
+//     const { code } = req.params;
 
-    try {
-      const data = await dataBase.shortener_link.findUnique({
-        where: {
-          code,
-        },
-      });
+//     try {
+//       const data = await dataBase.shortener_link.findUnique({
+//         where: {
+//           code,
+//         },
+//       });
 
-      let countingUsage = data?.counting_usage ?? 1;
+//       let countingUsage = data?.counting_usage ?? 1;
 
-      countingUsage++;
+//       countingUsage++;
 
-      await dataBase.shortener_link.update({
-        where: {
-          code,
-        },
-        data: {
-          counting_usage: countingUsage,
-        },
-      });
-      res.send({ data: { link: data?.original_link } });
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+//       await dataBase.shortener_link.update({
+//         where: {
+//           code,
+//         },
+//         data: {
+//           counting_usage: countingUsage,
+//         },
+//       });
+//       res.send({ data: { link: data?.original_link } });
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
 
 shortUrlRoutes.post(
   "/shortener/link",
   async (req: Request, res: Response, next) => {
-    const { originalLink } = req.body.shortener;
-
-    const code = geraStringAleatoria(7);
-    const urlBase = process.env["BASE_URL_FRONT"];
-    const shortLink = `${urlBase}/link/${code}`;
-
     try {
-      const add = await dataBase.shortener_link.create({
-        data: {
-          idshortener_link: uuidv4(),
-          code,
-          original_link: originalLink,
-          short_link: shortLink,
-        },
-      });
-
-      res.send({ data: add.short_link });
+      const data = await shortenerLink(req.body.data);
+      res.send({ data });
     } catch (error) {
       next(error);
     }
   }
 );
-
-const geraStringAleatoria = (tamanho: number) => {
-  var stringAleatoria = "";
-  var caracteres =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (let i = 0; i < tamanho; i++) {
-    stringAleatoria += caracteres.charAt(
-      Math.floor(Math.random() * caracteres.length)
-    );
-  }
-  return stringAleatoria;
-};
 
 export { shortUrlRoutes };
