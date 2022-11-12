@@ -6,41 +6,51 @@ const shortUrlRoutes = Router();
 
 shortUrlRoutes.get(
   "/shortener/link/:code/status",
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response, next) => {
     const { code } = req.params;
-    const data = await dataBase.shortener_link.findUnique({
-      where: {
-        code,
-      },
-    });
 
-    res.send({ data: { use: data?.counting_usage } });
+    try {
+      const data = await dataBase.shortener_link.findUnique({
+        where: {
+          code,
+        },
+      });
+
+      res.send({ data: { use: data?.counting_usage } });
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
 shortUrlRoutes.get(
   "/shortener/link/:code",
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response, next) => {
     const { code } = req.params;
-    const data = await dataBase.shortener_link.findUnique({
-      where: {
-        code,
-      },
-    });
 
-    let countingUsage = data?.counting_usage ?? 1;
+    try {
+      const data = await dataBase.shortener_link.findUnique({
+        where: {
+          code,
+        },
+      });
 
-    countingUsage++;
+      let countingUsage = data?.counting_usage ?? 1;
 
-    await dataBase.shortener_link.update({
-      where: {
-        code,
-      },
-      data: {
-        counting_usage: countingUsage,
-      },
-    });
-    res.send({ data: { link: data?.original_link } });
+      countingUsage++;
+
+      await dataBase.shortener_link.update({
+        where: {
+          code,
+        },
+        data: {
+          counting_usage: countingUsage,
+        },
+      });
+      res.send({ data: { link: data?.original_link } });
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
