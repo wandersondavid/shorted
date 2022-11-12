@@ -55,6 +55,9 @@ const getShortLinkByCodeInDB = async (
       },
     });
 
+    if (!result)
+      throw new NotFoundError("Url não encotrada");
+
     return result ?? undefined;
   } catch (error) {
     throw new NotFoundError("Url não encotrada");
@@ -70,6 +73,9 @@ const countingUsageShortLinkByCodeInDB = async (
         code,
       },
     });
+
+    if (!result)
+      throw new NotFoundError("Url não encotrada");
 
     return result?.counting_usage ?? undefined;
   } catch (error) {
