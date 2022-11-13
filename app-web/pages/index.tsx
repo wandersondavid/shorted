@@ -5,41 +5,22 @@ import {
   Container,
   Card,
   Text,
-  Navbar,
   Button,
   Input,
 } from "@nextui-org/react";
-import { SunIcon, Link1Icon, MoonIcon } from "@radix-ui/react-icons";
-import { useTheme as useNextTheme } from "next-themes";
-import { ThemeToggle } from "../components/ThemeToggle";
+import { Link1Icon } from "@radix-ui/react-icons";
+
+import { Header } from "../components/Header";
 
 const HomePage = styled("div", { fontFamily: "$system" });
 
 export default function Home() {
-  const { theme, setTheme } = useNextTheme();
-
   return (
     <HomePage>
       <Head>
         <title>Short-me</title>
       </Head>
-      <Navbar isBordered>
-        <Navbar.Brand>
-          <StitchesLogo />
-        </Navbar.Brand>
-        <Navbar.Content>
-          <Navbar.Link color="inherit" href="#">
-            Developer
-          </Navbar.Link>
-          <Navbar.Link color="inherit" href="#">
-            Contato
-          </Navbar.Link>
-          <Navbar.Item>
-            <ThemeToggle />
-          </Navbar.Item>
-        </Navbar.Content>
-      </Navbar>
-
+      <Header />
       <Container>
         <Text>Lorem Ipsum is simply dummy text of the </Text>
         <Text>

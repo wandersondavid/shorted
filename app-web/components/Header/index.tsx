@@ -1,22 +1,25 @@
-import NextLink from "next/link";
+import { Navbar } from "@nextui-org/react";
 import { styled } from "../../stitches.config";
-const Flex = styled("header", {});
-const Logo = styled("img", {});
-const Nav = styled("nav", {});
-const ThemeToggle = styled("svg", {});
-const Link = styled("a", {});
+import StitchesLogo from "../StitchesLogo";
+import { ThemeToggle } from "../ThemeToggle";
 
 export const Header = () => {
   return (
-    <Flex>
-      <NextLink href="/" passHref>
-        <Logo />
-      </NextLink>
-      <Nav>
-        <Link>Developer</Link>
-        <Link>contato</Link>
-        <ThemeToggle />
-      </Nav>
-    </Flex>
+    <Navbar isBordered>
+      <Navbar.Brand>
+        <StitchesLogo />
+      </Navbar.Brand>
+      <Navbar.Content>
+        <Navbar.Link color="inherit" href="#">
+          Developer
+        </Navbar.Link>
+        <Navbar.Link color="inherit" href="#">
+          Contato
+        </Navbar.Link>
+        <Navbar.Item css={{ cursor: "pointer" }}>
+          <ThemeToggle />
+        </Navbar.Item>
+      </Navbar.Content>
+    </Navbar>
   );
 };
