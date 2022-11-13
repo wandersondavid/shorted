@@ -4,18 +4,20 @@ import { styled } from "../stitches.config";
 import {
   Container,
   Card,
-  Row,
   Text,
   Navbar,
   Button,
   Input,
-  Spacer,
 } from "@nextui-org/react";
-import { SunIcon, Link1Icon } from "@radix-ui/react-icons";
+import { SunIcon, Link1Icon, MoonIcon } from "@radix-ui/react-icons";
+import { useTheme as useNextTheme } from "next-themes";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 const HomePage = styled("div", { fontFamily: "$system" });
 
 export default function Home() {
+  const { theme, setTheme } = useNextTheme();
+
   return (
     <HomePage>
       <Head>
@@ -33,7 +35,7 @@ export default function Home() {
             Contato
           </Navbar.Link>
           <Navbar.Item>
-            <SunIcon />
+            <ThemeToggle />
           </Navbar.Item>
         </Navbar.Content>
       </Navbar>
