@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@nextui-org/react": "^1.0.0-beta.10",
     "@radix-ui/react-popover": "1.0.2",
     "@stitches/react": "1.2.8",
     "next": "latest",
