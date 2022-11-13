@@ -1,53 +1,58 @@
-import Head from 'next/head'
-import StitchesLogo from '../components/StitchesLogo'
-import {  styled } from '../stitches.config'
+import Head from "next/head";
+import StitchesLogo from "../components/StitchesLogo";
+import { styled } from "../stitches.config";
+import {
+  Container,
+  Card,
+  Row,
+  Text,
+  Navbar,
+  Button,
+  Input,
+  Spacer,
+} from "@nextui-org/react";
+import { SunIcon, Link1Icon } from "@radix-ui/react-icons";
 
-const Box = styled('div', {})
-
-const Text = styled('p', {
-  fontFamily: '$system',
-  color: '$hiContrast',
-})
-
-const Link = styled('a', {
-  fontFamily: '$system',
-  textDecoration: 'none',
-  color: '$purple600',
-})
-
-const Container = styled('div', {
-  marginX: 'auto',
-  paddingX: '$3',
-
-  variants: {
-    size: {
-      1: {
-        maxWidth: '300px',
-      },
-      2: {
-        maxWidth: '585px',
-      },
-      3: {
-        maxWidth: '865px',
-      },
-    },
-  },
-})
+const HomePage = styled("div", { fontFamily: "$system" });
 
 export default function Home() {
   return (
-    <Box css={{ paddingY: '$6' }}>
+    <HomePage>
       <Head>
-        <title>Use Stitches with Next.js</title>
+        <title>Short-me</title>
       </Head>
-      <Container size={{ '@initial': '1', '@bp1': '2' }}>
-        <StitchesLogo />
-        <Text as="h1">Hello, from Stitches.</Text>
+      <Navbar isBordered>
+        <Navbar.Brand>
+          <StitchesLogo />
+        </Navbar.Brand>
+        <Navbar.Content>
+          <Navbar.Link color="inherit" href="#">
+            Developer
+          </Navbar.Link>
+          <Navbar.Link color="inherit" href="#">
+            Contato
+          </Navbar.Link>
+          <Navbar.Item>
+            <SunIcon />
+          </Navbar.Item>
+        </Navbar.Content>
+      </Navbar>
+
+      <Container>
+        <Text>Lorem Ipsum is simply dummy text of the </Text>
         <Text>
-          For full documentation, visit{' '}
-          <Link href="https://stitches.dev">stitches.dev</Link>.
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry
         </Text>
+
+        <Card>
+          <Card>
+            <Link1Icon />
+            <Input underlined size="md" placeholder="Medium" />
+            <Button>Link</Button>
+          </Card>
+        </Card>
       </Container>
-    </Box>
-  )
+    </HomePage>
+  );
 }
