@@ -9,6 +9,7 @@
     "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
     "start:dev": "nodemon",
+    "start:prod": "npm run build && pm2 start dist/src/index.js --name short-me",
     "model": "npx prisma introspect && npx prisma generate",
     "studio": "npx prisma studio"
   },
