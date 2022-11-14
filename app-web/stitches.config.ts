@@ -12,7 +12,9 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      primary: "red",
+      primary:"transparent",
+    navBar:"hsl(252,80%,53%)",
+
       hiContrast: "hsl(206,10%,5%)",
       loContrast: "white",
 
@@ -82,9 +84,15 @@ export const {
   },
 });
 
+
+export const globalStyles = globalCss({
+  body: { margin: 0 , padding: 0, fontFamily: "$system" },
+});
+
 export const darkTheme = createTheme({
   colors: {
-    primary: "#000000",
+    primary: "transparent",
+    navBar:"hsl(206,8%,8%)",
     hiContrast: 'hsl(206,2%,93%)',
     loContrast: 'hsl(206,8%,8%)',
 

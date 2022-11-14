@@ -1,22 +1,20 @@
 import { Head, Html, Main, NextScript } from 'next/document'
-import { darkTheme, getCssText, styled } from '../stitches.config'
-
-const Body = styled('body', {})
-
+import { getCssText} from '../stitches.config'
 
 export default function MyDocument() {
+
   return (
-    <Html lang="en">
+    <Html lang="pt-br">
       <Head>
         <style
           id="stitches"
           dangerouslySetInnerHTML={{ __html: getCssText() }}
         />
       </Head>
-      <Body >
+      <body >
         <Main />
         <NextScript />
-      </Body>
+      </body>
     </Html>
   )
 }

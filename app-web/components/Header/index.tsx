@@ -1,11 +1,13 @@
 import { Navbar } from "@nextui-org/react";
-import { styled } from "../../stitches.config";
+import { styled } from "@stitches/react";
 import StitchesLogo from "../StitchesLogo";
 import { ThemeToggle } from "../ThemeToggle";
 
+const NavbarStyled = styled(Navbar, {backgroundColor: '$navBar', background:'$navBar', '& > div': {background: "#ffffff00"}});
+
 export const Header = () => {
   return (
-    <Navbar isBordered>
+    <NavbarStyled >
       <Navbar.Brand>
         <StitchesLogo />
       </Navbar.Brand>
@@ -20,6 +22,6 @@ export const Header = () => {
           <ThemeToggle />
         </Navbar.Item>
       </Navbar.Content>
-    </Navbar>
+    </NavbarStyled>
   );
 };

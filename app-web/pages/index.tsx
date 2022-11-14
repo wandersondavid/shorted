@@ -12,7 +12,7 @@ import { Link1Icon } from "@radix-ui/react-icons";
 
 import { Header } from "../components/Header";
 
-const HomePage = styled("div", { fontFamily: "$system" });
+const HomePage = styled("main", {});
 
 export default function Home() {
   return (
