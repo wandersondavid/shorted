@@ -1,22 +1,29 @@
-import { Navbar } from "@nextui-org/react";
+import { Navbar, useTheme } from "@nextui-org/react";
 import { styled } from "@stitches/react";
-import StitchesLogo from "../StitchesLogo";
+import { LogoDark, LogoLigth } from "../Logo";
+import { Text } from "../Text";
 import { ThemeToggle } from "../ThemeToggle";
 
-const NavbarStyled = styled(Navbar, {backgroundColor: '$navBar', background:'$navBar', '& > div': {background: "#ffffff00"}});
+const NavbarStyled = styled(Navbar, {
+  backgroundColor: "$navBar",
+  background: "$navBar",
+  "& > div": { background: "$navBar !important" },
+});
 
 export const Header = () => {
+  const { theme } = useTheme();
+
   return (
-    <NavbarStyled >
+    <NavbarStyled>
       <Navbar.Brand>
-        <StitchesLogo />
+        {theme === "dark" ? <LogoDark /> : <LogoLigth />}
       </Navbar.Brand>
       <Navbar.Content>
         <Navbar.Link color="inherit" href="#">
-          Developer
+          <Text text="Developer" />
         </Navbar.Link>
         <Navbar.Link color="inherit" href="#">
-          Contato
+          <Text text="Contato" />
         </Navbar.Link>
         <Navbar.Item css={{ cursor: "pointer" }}>
           <ThemeToggle />

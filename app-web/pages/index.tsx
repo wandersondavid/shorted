@@ -1,5 +1,4 @@
 import Head from "next/head";
-import StitchesLogo from "../components/StitchesLogo";
 import { styled } from "../stitches.config";
 import {
   Container,

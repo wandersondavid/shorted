@@ -12,8 +12,7 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      primary:"transparent",
-    navBar:"hsl(252,80%,53%)",
+      primary: "transparent",
 
       hiContrast: "hsl(206,10%,5%)",
       loContrast: "white",
@@ -31,6 +30,10 @@ export const {
       purple400: "hsl(252,75%,84%)",
       purple500: "hsl(252,78%,60%)",
       purple600: "hsl(252,80%,53%)",
+
+      navBar: "#ffffff",
+
+      text:"$gray600",
     },
     space: {
       1: "5px",
@@ -84,17 +87,16 @@ export const {
   },
 });
 
-
 export const globalStyles = globalCss({
-  body: { margin: 0 , padding: 0, fontFamily: "$system" },
+  body: { margin: 0, padding: 0, fontFamily: "$system" },
 });
 
 export const darkTheme = createTheme({
   colors: {
     primary: "transparent",
-    navBar:"hsl(206,8%,8%)",
-    hiContrast: 'hsl(206,2%,93%)',
-    loContrast: 'hsl(206,8%,8%)',
+    navBar: "hsl(206,8%,8%)",
+    hiContrast: "hsl(206,2%,93%)",
+    loContrast: "hsl(206,8%,8%)",
 
     gray100: "hsl(206,22%,99%)",
     gray200: "hsl(206,12%,97%)",
@@ -109,5 +111,7 @@ export const darkTheme = createTheme({
     purple400: "hsl(252,75%,84%)",
     purple500: "hsl(252,78%,60%)",
     purple600: "hsl(252,80%,53%)",
+
+    text:"$gray100",
   },
 });
