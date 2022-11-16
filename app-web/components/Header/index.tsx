@@ -5,11 +5,10 @@ import { Text } from "../Text";
 import { ThemeToggle } from "../ThemeToggle";
 
 const NavbarStyled = styled(Navbar, {
-  backgroundColor: "$navBar",
-  background: "$navBar",
+
   boxShadow:'transparent',
 
-  "& > div": { background: "transparent !important" },
+  "& > div": { background: "transparent !important",  backdropFilter: 'initial !important' },
 });
 
 export const Header = () => {
