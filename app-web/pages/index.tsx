@@ -7,6 +7,7 @@ import { Header } from "../components/Header";
 import { Text } from "../components/Text";
 import img from "../public/background/background-home-page.svg";
 import { BackgroundHome } from "../components/background";
+import { useState } from "react";
 
 const ButtonStyled = styled(Button, {
   background: "$button !important",
@@ -66,7 +67,32 @@ const CardInput = styled("div", {
   padding: "0px 36px",
 });
 
+type Url = {
+  url: string;
+};
+
 export default function Home() {
+  const [url, setUrl] = useState<Url>();
+  const [shortLink, setShortLink] = useState<Url>();
+
+  const shortUrl = () => {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: "Token " },
+      body: `{"data":{"originalLink":"${url}"}}`,
+    };
+
+    fetch("http://164.90.158.30/api/v1/shortener/link", options)
+      .then((response) => response.json())
+      .then((response) => setShortLink(response.data.shortLink))
+      .catch((err) => console.error(err));
+  };
+
+  const onChange = (e: any) => {
+    const value = e.target.value;
+    setUrl(value);
+  };
+
   return (
     <HomePage>
       <Head>
@@ -75,10 +101,9 @@ export default function Home() {
       <BackgroundHome />
       <Header />
       <Container
-      css={{
-      marginTop:100
-      }}
-
+        css={{
+          marginTop: 100,
+        }}
       >
         <Container
           css={{
@@ -104,7 +129,7 @@ export default function Home() {
               textAlign: "center",
               fontSize: "20px",
               maxWidth: "680px",
-              marginBottom: '30px',
+              marginBottom: "30px",
             }}
             text="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
           />
@@ -123,6 +148,7 @@ export default function Home() {
               <Input
                 underlined
                 placeholder="centuries, but also the leap into "
+                onChange={onChange}
                 css={{
                   maxWidth: "590px",
                   width: "100%",
@@ -134,15 +160,23 @@ export default function Home() {
                 }
               />
               <ButtonStyled
+                onClick={shortUrl}
                 css={{
                   width: "166px",
                   height: "57px",
                 }}
               >
+                {" "}
                 Link
               </ButtonStyled>
             </CardInput>
           </CardContainer>
+          {shortLink && (
+            <Text
+              as="h2"
+              text={`${shortLink}`}
+            />
+          )}
         </Container>
       </Container>
     </HomePage>
