@@ -74,7 +74,12 @@ export default function Home() {
       </Head>
       <BackgroundHome />
       <Header />
-      <Container>
+      <Container
+      css={{
+      marginTop:100
+      }}
+
+      >
         <Container
           css={{
             display: "flex",
@@ -99,6 +104,7 @@ export default function Home() {
               textAlign: "center",
               fontSize: "20px",
               maxWidth: "680px",
+              marginBottom: '30px',
             }}
             text="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
           />

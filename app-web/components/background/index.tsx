@@ -1,14 +1,13 @@
 import { styled } from "@stitches/react";
 
-const Svg = styled('svg', {
+const Svg = styled("svg", {
   position: "absolute",
   left: 100,
   top: 200,
   right: 0,
-  bottom:0,
-
-})
-
+  bottom: 0,
+  zIndex: -1,
+});
 
 export const BackgroundHome = () => (
   <Svg
