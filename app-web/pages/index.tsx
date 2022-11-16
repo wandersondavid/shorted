@@ -1,17 +1,23 @@
 import Head from "next/head";
 import { styled } from "../stitches.config";
-import { Container, Card, Button, Input } from "@nextui-org/react";
-import { Link1Icon } from "@radix-ui/react-icons";
+import { Container, Button, Input } from "@nextui-org/react";
+import { Link2Icon } from "@radix-ui/react-icons";
 
 import { Header } from "../components/Header";
 import { Text } from "../components/Text";
 import img from "../public/background/background-home-page.svg";
 import { BackgroundHome } from "../components/background";
 
+const ButtonStyled = styled(Button, {
+  background: "$button !important",
+  backgroundColor: "$button !important",
+});
+
 const HomePage = styled("main", {
-  position: 'relative',
-  height:'100vh',
-  overflowX:'hidden',
+  position: "relative",
+  height: "100vh",
+  overflowX: "hidden",
+
   "&::before": {
     content: "",
     background: " #5746AF",
@@ -66,7 +72,7 @@ export default function Home() {
       <Head>
         <title>Short-me</title>
       </Head>
-      <BackgroundHome/>
+      <BackgroundHome />
       <Header />
       <Container>
         <Container
@@ -118,17 +124,17 @@ export default function Home() {
                   color: "#AA99EC",
                 }}
                 contentLeft={
-                  <Link1Icon width="20px" height="20px" color="#fff" />
+                  <Link2Icon width="20px" height="20px" color="#AA99EC" />
                 }
               />
-              <Button
+              <ButtonStyled
                 css={{
                   width: "166px",
                   height: "57px",
                 }}
               >
                 Link
-              </Button>
+              </ButtonStyled>
             </CardInput>
           </CardContainer>
         </Container>
