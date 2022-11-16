@@ -31,6 +31,11 @@ export const {
       purple500: "hsl(252,78%,60%)",
       purple600: "hsl(252,80%,53%)",
 
+
+      cardContainer: "#FBFAFF",
+      cardInput: "#F6F5FC",
+      button:'#6E56CF',
+
       navBar: "#ffffff",
 
       text:"$gray600",
@@ -111,6 +116,12 @@ export const darkTheme = createTheme({
     purple400: "hsl(252,75%,84%)",
     purple500: "hsl(252,78%,60%)",
     purple600: "hsl(252,80%,53%)",
+
+    cardContainer: "#29214A",
+    cardInput: "#1A1523",
+    button:'#6E56CF',
+
+
 
     text:"$gray100",
   },

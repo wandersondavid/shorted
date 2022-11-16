@@ -7,14 +7,16 @@ import { ThemeToggle } from "../ThemeToggle";
 const NavbarStyled = styled(Navbar, {
   backgroundColor: "$navBar",
   background: "$navBar",
-  "& > div": { background: "$navBar !important" },
+  boxShadow:'transparent',
+
+  "& > div": { background: "transparent !important" },
 });
 
 export const Header = () => {
   const { theme } = useTheme();
 
   return (
-    <NavbarStyled>
+    <NavbarStyled disableShadow>
       <Navbar.Brand>
         {theme === "dark" ? <LogoDark /> : <LogoLigth />}
       </Navbar.Brand>
