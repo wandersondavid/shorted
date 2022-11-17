@@ -180,6 +180,14 @@ export default function Home() {
               textAlign: "center",
               fontSize: "50px",
               maxWidth: "740px",
+              "@media (max-width: 600px)": {
+                fontSize: "45px",
+
+              },
+              "@media (max-width: 400px)": {
+                fontSize: "35px",
+
+              },
             }}
             text="Lorem Ipsum is simply dummy text of the"
           />
