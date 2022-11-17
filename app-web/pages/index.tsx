@@ -18,8 +18,8 @@ const HomePage = styled("main", {
   position: "relative",
   height: "100vh",
   overflowX: "hidden",
-  padding: '0px 20px',
-boxSizing:'border-box',
+  padding: "0px 20px",
+  boxSizing: "border-box",
   "&::before": {
     content: "",
     background: " #5746AF",
@@ -59,6 +59,19 @@ const CardContainer = styled("div", {
     width: "100% !important",
   },
 });
+const CardInputTest = styled("div", {
+  width: "100%",
+  borderRadius: "15px",
+  backgroundColor: "trasparent",
+  "@media (max-width: 960px)": {
+    backgroundColor: "$cardInput",
+    height: "57px",
+    display: "flex",
+    justifyContent: 'start',
+    paddingLeft:'5px',
+    alignItems:'center',
+  },
+});
 
 const CardInput = styled("div", {
   maxWidth: "870px",
@@ -73,8 +86,8 @@ const CardInput = styled("div", {
   alignItems: "center",
   padding: "0px 36px",
   boxSizing: "border-box",
-
   "@media (max-width: 960px)": {
+    backgroundColor: "transparent",
     maxWidth: "100%",
     maxHeight: "100%",
     height: "160px",
@@ -82,6 +95,7 @@ const CardInput = styled("div", {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
+    padding: "0px",
   },
 });
 
@@ -192,15 +206,17 @@ export default function Home() {
         >
           <CardContainer>
             <CardInput>
-              <InputStyled
-                underlined
-                placeholder="centuries, but also the leap into "
-                onChange={onChange}
-                status="secondary"
-                contentLeft={
-                  <Link2Icon width="20px" height="20px" color="#AA99EC" />
-                }
-              />
+              <CardInputTest>
+                <InputStyled
+                  underlined
+                  placeholder="centuries, but also the leap into "
+                  onChange={onChange}
+                  status="secondary"
+                  contentLeft={
+                    <Link2Icon width="20px" height="20px" color="#AA99EC" />
+                  }
+                />
+              </CardInputTest>
               <ButtonStyled
                 onClick={shortUrl}
                 css={{
