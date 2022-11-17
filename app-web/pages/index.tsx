@@ -51,6 +51,12 @@ const CardContainer = styled("div", {
   borderRadius: "20px",
   justifyContent: "center",
   alignItems: "center",
+  padding: "0px 20px",
+  boxSizing: "border-box",
+  "@media (max-width: 960px)": {
+    maxWidth: "100%",
+    width: "100% !important",
+  },
 });
 
 const CardInput = styled("div", {
@@ -65,6 +71,41 @@ const CardInput = styled("div", {
   justifyContent: "space-between",
   alignItems: "center",
   padding: "0px 36px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 960px)": {
+    maxWidth: "100%",
+    maxHeight: "100%",
+    height: "160px",
+    width: "100% !important",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+});
+
+const InputStyled = styled(Input, {
+  maxWidth: "590px !important",
+  width: "590px !important",
+  height: "57px  !important",
+  color: "#AA99EC  !important",
+  flex: 1,
+  "& label": {
+    "&::before": {
+      content: "",
+      width: "0",
+      height: "0",
+    },
+    "&::after": {
+      content: "",
+      width: "0",
+      height: "0",
+    },
+  },
+  "@media (max-width: 960px)": {
+    color: "red  !important",
+    width: "300px !important",
+  },
 });
 
 type Url = {
@@ -103,13 +144,14 @@ export default function Home() {
       <Container
         css={{
           marginTop: 100,
+          padding: 0,
         }}
       >
         <Container
           css={{
             display: "flex",
             justifyContent: "center",
-            width: "100%",
+            padding: 0,
             flexDirection: "column",
             alignItems: "center",
           }}
@@ -141,20 +183,16 @@ export default function Home() {
             width: "100%",
             flexDirection: "column",
             alignItems: "center",
+            padding: 0,
           }}
         >
           <CardContainer>
             <CardInput>
-              <Input
+              <InputStyled
                 underlined
                 placeholder="centuries, but also the leap into "
                 onChange={onChange}
-                css={{
-                  maxWidth: "590px",
-                  width: "100%",
-                  height: "57px",
-                  color: "#AA99EC",
-                }}
+                status="secondary"
                 contentLeft={
                   <Link2Icon width="20px" height="20px" color="#AA99EC" />
                 }
@@ -164,6 +202,11 @@ export default function Home() {
                 css={{
                   width: "166px",
                   height: "57px",
+
+                  "@media (max-width: 960px)": {
+                    maxWidth: "100%",
+                    width: "100% !important",
+                  },
                 }}
               >
                 {" "}
@@ -171,12 +214,7 @@ export default function Home() {
               </ButtonStyled>
             </CardInput>
           </CardContainer>
-          {shortLink && (
-            <Text
-              as="h2"
-              text={`${shortLink}`}
-            />
-          )}
+          {shortLink && <Text as="h2" text={`${shortLink}`} />}
         </Container>
       </Container>
     </HomePage>
