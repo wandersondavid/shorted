@@ -18,7 +18,8 @@ const HomePage = styled("main", {
   position: "relative",
   height: "100vh",
   overflowX: "hidden",
-
+  padding: '0px 20px',
+boxSizing:'border-box',
   "&::before": {
     content: "",
     background: " #5746AF",
@@ -146,7 +147,7 @@ export default function Home() {
           marginTop: 100,
           padding: 0,
           "@media (max-width: 960px)": {
-            marginTop: 50,
+            marginTop: 0,
           },
         }}
       >
