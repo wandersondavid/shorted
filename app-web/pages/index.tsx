@@ -29,6 +29,9 @@ const HomePage = styled("main", {
     height: "376px",
     left: "0px",
     top: "135.5px",
+    "@media (max-width: 600px)": {
+      width: "160px",
+    },
   },
   "&::after": {
     content: "",
@@ -39,6 +42,11 @@ const HomePage = styled("main", {
     top: "413px",
     background: "rgba(0, 120, 161, 0.92)",
     filter: " blur(296.53px)",
+    "@media (max-width: 600px)": {
+      top: "613px",
+      width: "110px",
+      left: "500px",
+    },
   },
 });
 
@@ -182,7 +190,7 @@ export default function Home() {
               maxWidth: "740px",
               "@media (max-width: 600px)": {
                 fontSize: "45px",
-
+                textAlign: 'left'
               },
               "@media (max-width: 400px)": {
                 fontSize: "35px",
@@ -195,9 +203,12 @@ export default function Home() {
             as="h2"
             css={{
               textAlign: "center",
-              fontSize: "20px",
+              fontSize: "19px",
               maxWidth: "680px",
               marginBottom: "30px",
+              "@media (max-width: 600px)": {
+                textAlign: 'left'
+              },
             }}
             text="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
           />

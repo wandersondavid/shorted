@@ -7,6 +7,12 @@ const Svg = styled("svg", {
   right: 0,
   bottom: 0,
   zIndex: -1,
+  "@media (max-width: 600px)": {
+    top: 200,
+    right: 100,
+    bottom: 0,
+    inset:'197px 0pc 0px 1px'
+  },
 });
 
 export const BackgroundHome = () => (
