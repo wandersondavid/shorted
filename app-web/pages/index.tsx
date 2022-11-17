@@ -145,6 +145,9 @@ export default function Home() {
         css={{
           marginTop: 100,
           padding: 0,
+          "@media (max-width: 960px)": {
+            marginTop: 50,
+          },
         }}
       >
         <Container
