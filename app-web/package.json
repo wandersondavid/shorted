@@ -10,7 +10,7 @@
     "@radix-ui/react-icons": "^1.1.1",
     "@radix-ui/react-popover": "1.0.2",
     "@stitches/react": "1.2.8",
-    "next": "latest",
+    "next": "13.0.3",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
