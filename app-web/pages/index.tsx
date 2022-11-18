@@ -29,6 +29,8 @@ const HomePage = styled("main", {
     height: "376px",
     left: "0px",
     top: "135.5px",
+    zIndex: -1,
+
     "@media (max-width: 600px)": {
       width: "160px",
     },
@@ -42,6 +44,7 @@ const HomePage = styled("main", {
     top: "413px",
     background: "rgba(0, 120, 161, 0.92)",
     filter: " blur(296.53px)",
+    zIndex: -1,
     "@media (max-width: 600px)": {
       top: "613px",
       width: "110px",
@@ -76,8 +79,8 @@ const CardInputTest = styled("div", {
     height: "57px",
     display: "flex",
     justifyContent: 'start',
-    paddingLeft:'5px',
-    alignItems:'center',
+    paddingLeft: '5px',
+    alignItems: 'center',
   },
 });
 
