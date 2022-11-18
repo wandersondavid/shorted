@@ -7,6 +7,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   const [showChild, setShowChild] = useState(false);
   useEffect(() => {
+    window.localStorage.setItem('theme', 'dark')
     setShowChild(true);
   }, []);
 
