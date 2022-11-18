@@ -8,6 +8,7 @@ import { Text } from "../components/Text";
 import img from "../public/background/background-home-page.svg";
 import { BackgroundHome } from "../components/background";
 import { useState } from "react";
+import { Footer } from "../components/footer";
 
 const ButtonStyled = styled(Button, {
   background: "$button !important",
@@ -259,6 +260,7 @@ export default function Home() {
           {shortLink && <Text as="h2" text={`${shortLink}`} />}
         </Container>
       </Container>
+      <Footer/>
     </HomePage>
   );
 }
