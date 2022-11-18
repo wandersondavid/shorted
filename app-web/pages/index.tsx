@@ -150,7 +150,7 @@ export default function Home() {
       body: `{"data":{"originalLink":"${url}"}}`,
     };
 
-    fetch("http://164.90.158.30/api/v1/shortener/link", options)
+    fetch("https://api.plushere.com.br/api/v1/shortener/link", options)
       .then((response) => response.json())
       .then((response) => setShortLink(response.data.shortLink))
       .catch((err) => console.error(err));
