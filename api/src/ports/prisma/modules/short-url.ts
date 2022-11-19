@@ -29,7 +29,7 @@ const createShortLinkInDB = async (
 };
 
 type code = {
-  short_link: string;
+  original_link: string;
 };
 
 const getShortLinkByCodeInDB = async (
