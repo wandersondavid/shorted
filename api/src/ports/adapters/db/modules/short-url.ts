@@ -8,7 +8,7 @@ const createShortLinkInDB = async (originalLink: string) => {
 
   const code = geraStringAleatoria(7);
   const urlBase = process.env["BASE_URL_FRONT"];
-  const shortLink = `${urlBase}/link/${code}`;
+  const shortLink = `${urlBase}/${code}`;
 
   const payload: ShortLink = {
     idshortener_link: uuidv4(),
