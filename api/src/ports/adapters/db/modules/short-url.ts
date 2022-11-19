@@ -33,7 +33,7 @@ const getShortLinkByCodeInDB = async (code: string) => {
 
 
   return {
-    shortLink: result?.short_link ?? undefined
+    shortLink: result?.original_link ?? undefined
   }
 };
 
