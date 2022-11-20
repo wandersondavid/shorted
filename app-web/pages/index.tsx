@@ -205,6 +205,7 @@ export default function Home( props: any) {
           />
           <Text
             as="h2"
+            token="$text100"
             css={{
               textAlign: "center",
               fontSize: "19px",

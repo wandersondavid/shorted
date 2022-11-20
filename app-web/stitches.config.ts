@@ -39,6 +39,7 @@ export const {
       navBar: "#ffffff",
 
       text:"#11181C",
+      text100:"$gray600",
     },
     space: {
       1: "5px",
@@ -121,8 +122,7 @@ export const darkTheme = createTheme({
     cardInput: "#1A1523",
     button:'#6E56CF',
 
-
-
     text:"$gray100",
+    text100:"$purple400",
   },
 });
