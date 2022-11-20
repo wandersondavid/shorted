@@ -140,7 +140,7 @@ type Url = {
   url: string;
 };
 
-export default function Home( {serveUrl}) {
+export default function Home( props: any) {
   const [url, setUrl] = useState<Url>();
   const [shortLink, setShortLink] = useState<Url>();
 
@@ -150,7 +150,7 @@ export default function Home( {serveUrl}) {
       headers: { "Content-Type": "application/json", Authorization: "Token " },
       body: `{"data":{"originalLink":"${url}"}}`,
     };
-    fetch(`${serveUrl}/api/v1/shortener/link`, options)
+    fetch(`${props?.serveUrl}/api/v1/shortener/link`, options)
       .then((response) => response.json())
       .then((response) => setShortLink(response.data.shortLink))
       .catch((err) => console.error(err));
@@ -268,12 +268,10 @@ export default function Home( {serveUrl}) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
 
-
   const serveUrl = process.env.API_URL
-  console.log(serveUrl)
+
   return {
     props: { serveUrl },
   }
-
 
 }
