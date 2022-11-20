@@ -10,7 +10,7 @@ export default function Code() {
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
 
 	try {
-		const { code } = params;
+		const param = params;
 
 		const serveUrl = process.env.API_URL
 
@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
 			headers: { "Content-Type": "application/json" },
 		};
 
-		const ulr = `${serveUrl}/api/v1/shortener/link/${code}`;
+		const ulr = `${serveUrl}/api/v1/shortener/link/${param?.code}`;
 
 		const response = await fetch(ulr, options)
 		const data = await response.json();
