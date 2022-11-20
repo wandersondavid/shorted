@@ -164,7 +164,7 @@ export default function Home( props: any) {
   return (
     <HomePage>
       <Head>
-        <title>Short-me</title>
+        <title>Shorten-link</title>
       </Head>
       <BackgroundHome />
       <Header />
