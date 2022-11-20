@@ -38,7 +38,7 @@ export const {
 
       navBar: "#ffffff",
 
-      text:"$gray600",
+      text:"#11181C",
     },
     space: {
       1: "5px",
