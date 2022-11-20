@@ -12,7 +12,7 @@ model shortener_link {
   code             String        @unique(map: "code_UNIQUE") @db.VarChar(7)
   nome             String?       @db.VarChar(45)
   short_link       String        @map("short-link") @db.VarChar(45)
-  original_link    String        @map("original-link") @db.VarChar(45)
+  original_link    String        @map("original-link") @db.MediumText
   created_at       DateTime?     @default(now()) @db.DateTime(0)
   updated_at       DateTime?     @default(now()) @db.DateTime(0)
   user_iduser      String?       @db.VarChar(36)

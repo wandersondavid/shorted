@@ -5,7 +5,7 @@ import { Link2Icon } from "@radix-ui/react-icons";
 
 import { Header } from "../components/Header";
 import { Text } from "../components/Text";
-import img from "../public/background/background-home-page.svg";
+
 import { BackgroundHome } from "../components/background";
 import { useState } from "react";
 import { Footer } from "../components/footer";
