@@ -9,6 +9,7 @@ import img from "../public/background/background-home-page.svg";
 import { BackgroundHome } from "../components/background";
 import { useState } from "react";
 import { Footer } from "../components/footer";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
 const ButtonStyled = styled(Button, {
   background: "$button !important",
@@ -139,7 +140,7 @@ type Url = {
   url: string;
 };
 
-export default function Home() {
+export default function Home( {serveUrl}) {
   const [url, setUrl] = useState<Url>();
   const [shortLink, setShortLink] = useState<Url>();
 
@@ -149,8 +150,7 @@ export default function Home() {
       headers: { "Content-Type": "application/json", Authorization: "Token " },
       body: `{"data":{"originalLink":"${url}"}}`,
     };
-
-    fetch("https://api.shorted.app/api/v1/shortener/link", options)
+    fetch(`${serveUrl}/api/v1/shortener/link`, options)
       .then((response) => response.json())
       .then((response) => setShortLink(response.data.shortLink))
       .catch((err) => console.error(err));
@@ -260,7 +260,20 @@ export default function Home() {
           {shortLink && <Text as="h2" text={`${shortLink}`} />}
         </Container>
       </Container>
-      <Footer/>
+      <Footer />
     </HomePage>
   );
+}
+
+
+export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+
+
+  const serveUrl = process.env.API_URL
+  console.log(serveUrl)
+  return {
+    props: { serveUrl },
+  }
+
+
 }
