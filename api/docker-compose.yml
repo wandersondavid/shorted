@@ -1,12 +1,25 @@
-version: '3.4'
+version: '3.9'
 
 services:
   api:
-    image: api
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    network_mode: host
+    image: node:latest
+    container_name: api
+    restart: always
+    env_file:
+     - .env
     environment:
-      NODE_ENV: development
-    ports:
-      - 3333:3333
+      NODE_ENV: ${NODE_ENV}
+      DATABASE_URL : ${DATABASE_URL}
+      BASE_URL_FRONT: ${BASE_URL_FRONT}
+      PORT: ${PORT}
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    command: npm run start:dev
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
