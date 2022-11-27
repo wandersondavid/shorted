@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { styled } from "../stitches.config";
-import { Container, Button, Input } from "@nextui-org/react";
-import { Link2Icon } from "@radix-ui/react-icons";
+import { Container, Button, Input, Spacer} from "@nextui-org/react";
+import { Link2Icon, CopyIcon } from "@radix-ui/react-icons";
 
 import { Header } from "../components/Header";
 import { Text } from "../components/Text";
@@ -67,6 +67,7 @@ const CardContainer = styled("div", {
   alignItems: "center",
   padding: "0px 20px",
   boxSizing: "border-box",
+  flexDirection: 'column',
   "@media (max-width: 960px)": {
     maxWidth: "100%",
     width: "100% !important",
@@ -112,6 +113,41 @@ const CardInput = styled("div", {
   },
 });
 
+
+const CardCopy = styled("div", {
+  maxWidth: "570px",
+  maxHeight: "45px",
+  height: "45px",
+  width: "100%",
+  borderRadius: "30px",
+  backgroundColor: "$cardInput",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "0px 25px",
+  boxSizing: "border-box",
+  "@media (max-width: 960px)": {
+    backgroundColor: "transparent",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    height: "160px",
+    width: "100% !important",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    padding: "0px",
+  },
+});
+
+
+const ContentButtonIcon = styled("div", {
+  padding:5,
+  borderRadius:8,
+  backgroundColor: "$cardContainer",
+  cursor:'pointer',
+})
+
 const InputStyled = styled(Input, {
   maxWidth: "590px !important",
   width: "590px !important",
@@ -140,7 +176,7 @@ type Url = {
   url: string;
 };
 
-export default function Home( props: any) {
+export default function Home(props: any) {
   const [url, setUrl] = useState<Url>();
   const [shortLink, setShortLink] = useState<Url>();
 
@@ -257,8 +293,16 @@ export default function Home( props: any) {
                 Link
               </ButtonStyled>
             </CardInput>
+            <Spacer  />
+            {shortLink &&
+              <CardCopy>
+                <Text as="p" text={`${shortLink}`} />
+                <ContentButtonIcon>
+                  <CopyIcon width="20px" height="20px" color="#AA99EC" />
+                </ContentButtonIcon>
+              </CardCopy>
+            }
           </CardContainer>
-          {shortLink && <Text as="h2" text={`${shortLink}`} />}
         </Container>
       </Container>
       <Footer />
