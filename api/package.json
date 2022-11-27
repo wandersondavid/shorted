@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "model": "npx prisma introspect && npx prisma generate",
     "dev": "ts-node-dev src/index.ts",
-    "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
     "start:dev": "nodemon",
+    "start": "npm run start:dev",
     "start:prod": "npm run build && pm2 start dist/src/index.js --name short-me",
-    "model": "npx prisma introspect && npx prisma generate",
-    "studio": "npx prisma studio"
+    "studio": "npx prisma studio",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:destroy": "docker-compose down --volumes --remove-orphans"
   },
   "keywords": [],
   "author": "",
