@@ -274,7 +274,7 @@ export default function Home(props: Url) {
 
               },
             }}
-            text="Lorem Ipsum is simply dummy text of the"
+            text="Mais do que um encurtador de links"
           />
           <Text
             as="h2"
@@ -288,7 +288,7 @@ export default function Home(props: Url) {
                 textAlign: 'left'
               },
             }}
-            text="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+            text="Shorted é uma plataforma de gerenciamento de link permite que você saiba quais links estão gerando os melhores resultados."
           />
         </Container>
         <Container
@@ -306,7 +306,7 @@ export default function Home(props: Url) {
               <CardInputTest>
                 <InputStyled
                   underlined
-                  placeholder="centuries, but also the leap into "
+                  placeholder="Cole o link a ser encurtada"
                   onChange={onChange}
                   status="secondary"
                   contentLeft={
@@ -327,7 +327,7 @@ export default function Home(props: Url) {
                 }}
               >
                 {" "}
-                Link
+                Encurtar link
               </ButtonStyled>
             </CardInput>
             <Spacer />
