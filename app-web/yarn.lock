@@ -148,6 +148,11 @@
     "@react-types/shared" "3.14.0"
     "@stitches/react" "1.2.8"
 
+"@radix-ui/colors@^0.1.8":
+  "integrity" "sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw=="
+  "resolved" "https://registry.npmjs.org/@radix-ui/colors/-/colors-0.1.8.tgz"
+  "version" "0.1.8"
+
 "@radix-ui/primitive@1.0.0":
   "integrity" "sha512-3e7rn8FDMin4CgeL7Z/49smCA3rFYY3Ha2rUQ7HRWFadS5iCRw08ZgVT1LaNTCNqgvrUiyczLflrVrF0SRQtNA=="
   "resolved" "https://registry.npmjs.org/@radix-ui/primitive/-/primitive-1.0.0.tgz"
