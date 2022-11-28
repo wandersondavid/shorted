@@ -333,12 +333,15 @@ export default function Home(props: Url) {
             <Spacer />
             {!isLink && <CardCopy><Text token="$purple500" as="p" text='URl invalida' /></CardCopy>}
             {shortLink && isLink &&
+            <>
               <CardCopy>
                 <Text token="$purple500" as="p" text={`${shortLink}`} />
                 <ContentButtonIcon success={hasCopied} onClick={() => { copy(shortLink); setHasCopied(true); }}>
                   {hasCopied ? <CheckIcon width="20px" color="#41A777" /> : <CopyIcon width="20px" height="20px" color="#AA99EC" />}
                 </ContentButtonIcon>
               </CardCopy>
+               {false && <a href={`${shortLink}/status`} target='blank'><p>Ver o desempenho em tempo real.</p></a>}
+              </>
             }
           </CardContainer>
         </Container>
