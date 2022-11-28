@@ -32,6 +32,10 @@ export const {
       purple600: "hsl(252,80%,53%)",
 
 
+      greenbg:'#113123',
+      green:'#41A777',
+
+
       cardContainer: "#FBFAFF",
       cardInput: "#F6F5FC",
       button:'#6E56CF',
@@ -121,6 +125,9 @@ export const darkTheme = createTheme({
     cardContainer: "#29214A",
     cardInput: "#1A1523",
     button:'#6E56CF',
+
+    greenbg:'#113123',
+    green:'#41A777',
 
     text:"$gray100",
     text100:"$purple400",

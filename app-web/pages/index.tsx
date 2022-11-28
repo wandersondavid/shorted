@@ -1,15 +1,16 @@
 import Head from "next/head";
 import { styled } from "../stitches.config";
-import { Container, Button, Input, Spacer} from "@nextui-org/react";
-import { Link2Icon, CopyIcon } from "@radix-ui/react-icons";
+import { Container, Button, Input, Spacer } from "@nextui-org/react";
+import { Link2Icon, CopyIcon, CheckIcon } from "@radix-ui/react-icons";
 
 import { Header } from "../components/Header";
 import { Text } from "../components/Text";
 
 import { BackgroundHome } from "../components/background";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Footer } from "../components/footer";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import copy from 'copy-to-clipboard';
 
 const ButtonStyled = styled(Button, {
   background: "$button !important",
@@ -58,20 +59,27 @@ const HomePage = styled("main", {
 const CardContainer = styled("div", {
   maxWidth: "1008px",
   width: "100%",
-  maxHeight: "230px",
-  height: "230px",
+  // maxHeight: "230px",
+  // height: "230px",
   backgroundColor: "$cardContainer",
   display: "flex",
   borderRadius: "20px",
   justifyContent: "center",
   alignItems: "center",
-  padding: "0px 20px",
+  padding: "70px 20px",
   boxSizing: "border-box",
   flexDirection: 'column',
   "@media (max-width: 960px)": {
     maxWidth: "100%",
     width: "100% !important",
   },
+  variants: {
+    showInfo: {
+      true:{
+       padding:'70px 20px 50px'
+      }
+    }
+  }
 });
 const CardInputTest = styled("div", {
   width: "100%",
@@ -127,25 +135,21 @@ const CardCopy = styled("div", {
   alignItems: "center",
   padding: "0px 25px",
   boxSizing: "border-box",
-  "@media (max-width: 960px)": {
-    backgroundColor: "transparent",
-    maxWidth: "100%",
-    maxHeight: "100%",
-    height: "160px",
-    width: "100% !important",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    padding: "0px",
-  },
 });
 
 
 const ContentButtonIcon = styled("div", {
-  padding:5,
-  borderRadius:8,
+  padding: '7px 7px 5px 7px',
+  borderRadius: 8,
   backgroundColor: "$cardContainer",
-  cursor:'pointer',
+  cursor: 'pointer',
+  variants: {
+    success: {
+      true:{
+        backgroundColor: "$greenbg",
+      }
+    }
+  }
 })
 
 const InputStyled = styled(Input, {
@@ -173,24 +177,57 @@ const InputStyled = styled(Input, {
 });
 
 type Url = {
-  url: string;
+  serveUrl: string;
 };
 
-export default function Home(props: any) {
-  const [url, setUrl] = useState<Url>();
-  const [shortLink, setShortLink] = useState<Url>();
+export default function Home(props: Url) {
+  const [url, setUrl] = useState<string>('');
+  const [shortLink, setShortLink] = useState<string>('');
+  const [hasCopied, setHasCopied] = useState(false);
+  const [isLink, setIsLink] = useState(true);
+
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setIsLink(true)
+    }, 2000)
+  },[isLink])
+
+
+  const valideUrl = (params: string) => {
+    try {
+
+      new URL(params);
+      setIsLink(true)
+
+      return true
+    } catch (error) {
+      setShortLink('')
+      setIsLink(false)
+      return false
+    }
+  }
+
 
   const shortUrl = () => {
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: "Token " },
-      body: `{"data":{"originalLink":"${url}"}}`,
+    setHasCopied(false)
+
+    const valide = valideUrl(url)
+    if (valide) {
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Token " },
+        body: `{"data":{"originalLink":"${url}"}}`,
+      };
+      fetch(`${props?.serveUrl}/api/v1/shortener/link`, options)
+        .then((response) => response.json())
+        .then((response) => setShortLink(response.data.shortLink))
+        .catch((err) => console.error(err));
     };
-    fetch(`${props?.serveUrl}/api/v1/shortener/link`, options)
-      .then((response) => response.json())
-      .then((response) => setShortLink(response.data.shortLink))
-      .catch((err) => console.error(err));
-  };
+  }
+
+
+
 
   const onChange = (e: any) => {
     const value = e.target.value;
@@ -264,7 +301,7 @@ export default function Home(props: any) {
             padding: 0,
           }}
         >
-          <CardContainer>
+          <CardContainer showInfo={!!shortLink || !isLink}>
             <CardInput>
               <CardInputTest>
                 <InputStyled
@@ -293,12 +330,13 @@ export default function Home(props: any) {
                 Link
               </ButtonStyled>
             </CardInput>
-            <Spacer  />
-            {shortLink &&
+            <Spacer />
+            {!isLink &&  <CardCopy><Text  token="$purple500" as="p" text='URl invalida' /></CardCopy>}
+            {shortLink && isLink &&
               <CardCopy>
-                <Text as="p" text={`${shortLink}`} />
-                <ContentButtonIcon>
-                  <CopyIcon width="20px" height="20px" color="#AA99EC" />
+                <Text  token="$purple500" as="p" text={`${shortLink}`} />
+                <ContentButtonIcon success={hasCopied} onClick={() => { copy(shortLink); setHasCopied(true); }}>
+                  {hasCopied ? <CheckIcon width="20px" color="#41A777" /> : <CopyIcon width="20px" height="20px" color="#AA99EC" />}
                 </ContentButtonIcon>
               </CardCopy>
             }
