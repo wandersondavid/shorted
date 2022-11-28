@@ -233,6 +233,11 @@ export default function Home(props: Url) {
       <Head>
         <title>Shorted</title>
       </Head>
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4186114783938377"
+        crossOrigin="anonymous"></script>
+
+
       <BackgroundHome />
       <Header />
       <Container
