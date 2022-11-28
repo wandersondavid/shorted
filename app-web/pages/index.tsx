@@ -199,7 +199,7 @@ export default function Home(props: Url) {
 
     const urlRegex = '^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$';
     const url = new RegExp(urlRegex, 'i');
-    return url.test(str);
+    return { isUrl: url.test(str), url: str }
 
   }
 
@@ -207,14 +207,14 @@ export default function Home(props: Url) {
   const shortUrl = () => {
     setHasCopied(false)
 
-    const isvalid = valideUrl(url)
-    setIsLink(isvalid);
+    const hasUrl = valideUrl(url)
+    setIsLink(hasUrl.isUrl);
 
-    if (isvalid) {
+    if (hasUrl.isUrl) {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: "Token " },
-        body: `{"data":{"originalLink":"${url}"}}`,
+        body: `{"data":{"originalLink":"${hasUrl.url}"}}`,
       };
       fetch(`${props?.serveUrl}/api/v1/shortener/link`, options)
         .then((response) => response.json())
