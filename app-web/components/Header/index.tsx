@@ -20,9 +20,9 @@ export const Header = () => {
         {theme === "dark" ? <LogoDark /> : <LogoLigth />}
       </Navbar.Brand>
       <Navbar.Content>
-        <Navbar.Link color="inherit" href="#">
+        {/* <Navbar.Link color="inherit" href="#">
           <Text text="Developer" />
-        </Navbar.Link>
+        </Navbar.Link> */}
         <Navbar.Link color="inherit" href="#">
           <Text text="Contato" />
         </Navbar.Link>

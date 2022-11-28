@@ -1,5 +1,16 @@
 import type * as Stitches from "@stitches/react";
 import { createStitches } from "@stitches/react";
+import {
+  gray,
+  blue,
+  red,
+  green,
+  grayDark,
+  blueDark,
+  redDark,
+  greenDark,
+} from '@radix-ui/colors';
+
 
 export const {
   config,
@@ -12,6 +23,14 @@ export const {
 } = createStitches({
   theme: {
     colors: {
+      ...gray,
+      ...blue,
+      ...red,
+      ...green,
+      ...grayDark,
+      ...blueDark,
+      ...redDark,
+      ...greenDark,
       primary: "transparent",
 
       hiContrast: "hsl(206,10%,5%)",
@@ -30,6 +49,11 @@ export const {
       purple400: "hsl(252,75%,84%)",
       purple500: "hsl(252,78%,60%)",
       purple600: "hsl(252,80%,53%)",
+
+
+      greenbg:green.green3,
+
+      green:'#41A777',
 
 
       cardContainer: "#FBFAFF",
@@ -99,6 +123,14 @@ export const globalStyles = globalCss({
 
 export const darkTheme = createTheme({
   colors: {
+     ...gray,
+      ...blue,
+      ...red,
+      ...green,
+      ...grayDark,
+      ...blueDark,
+      ...redDark,
+      ...greenDark,
     primary: "transparent",
     navBar: "hsl(206,8%,8%)",
     hiContrast: "hsl(206,2%,93%)",
@@ -121,6 +153,9 @@ export const darkTheme = createTheme({
     cardContainer: "#29214A",
     cardInput: "#1A1523",
     button:'#6E56CF',
+
+    greenbg:green.green3,
+    green:'#41A777',
 
     text:"$gray100",
     text100:"$purple400",
