@@ -187,33 +187,28 @@ export default function Home(props: Url) {
   const [isLink, setIsLink] = useState(true);
 
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLink(true)
-    }, 2000)
-  }, [isLink])
+  const valideUrl = (str: string) => {
+    setShortLink('')
 
+    if (!(/^http[s]?/.test(str))) {
 
-  const valideUrl = (params: string) => {
-    try {
-
-      new URL(params);
-      setIsLink(true)
-
-      return true
-    } catch (error) {
-      setShortLink('')
-      setIsLink(false)
-      return false
+      str = `https://${str}`
     }
+
+    const urlRegex = '^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$';
+    const url = new RegExp(urlRegex, 'i');
+    return url.test(str);
+
   }
 
 
   const shortUrl = () => {
     setHasCopied(false)
 
-    const valide = valideUrl(url)
-    if (valide) {
+    const isvalid = valideUrl(url)
+    setIsLink(isvalid);
+
+    if (isvalid) {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: "Token " },
@@ -225,9 +220,6 @@ export default function Home(props: Url) {
         .catch((err) => console.error(err));
     };
   }
-
-
-
 
   const onChange = (e: any) => {
     const value = e.target.value;
@@ -333,14 +325,14 @@ export default function Home(props: Url) {
             <Spacer />
             {!isLink && <CardCopy><Text token="$purple500" as="p" text='URl invalida' /></CardCopy>}
             {shortLink && isLink &&
-            <>
-              <CardCopy>
-                <Text token="$purple500" as="p" text={`${shortLink}`} />
-                <ContentButtonIcon success={hasCopied} onClick={() => { copy(shortLink); setHasCopied(true); }}>
-                  {hasCopied ? <CheckIcon width="20px" color="#41A777" /> : <CopyIcon width="20px" height="20px" color="#AA99EC" />}
-                </ContentButtonIcon>
-              </CardCopy>
-               {false && <a href={`${shortLink}/status`} target='blank'><p>Ver o desempenho em tempo real.</p></a>}
+              <>
+                <CardCopy>
+                  <Text token="$purple500" as="p" text={`${shortLink}`} />
+                  <ContentButtonIcon success={hasCopied} onClick={() => { copy(shortLink); setHasCopied(true); }}>
+                    {hasCopied ? <CheckIcon width="20px" color="#41A777" /> : <CopyIcon width="20px" height="20px" color="#AA99EC" />}
+                  </ContentButtonIcon>
+                </CardCopy>
+                {false && <a href={`${shortLink}/status`} target='blank'><p>Ver o desempenho em tempo real.</p></a>}
               </>
             }
           </CardContainer>
