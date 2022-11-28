@@ -231,7 +231,7 @@ export default function Home(props: Url) {
   return (
     <HomePage>
       <Head>
-        <title>Shorten-link</title>
+        <title>Shorted</title>
       </Head>
       <BackgroundHome />
       <Header />
