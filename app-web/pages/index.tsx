@@ -75,8 +75,8 @@ const CardContainer = styled("div", {
   },
   variants: {
     showInfo: {
-      true:{
-       padding:'70px 20px 50px'
+      true: {
+        padding: '70px 20px 50px'
       }
     }
   }
@@ -145,7 +145,7 @@ const ContentButtonIcon = styled("div", {
   cursor: 'pointer',
   variants: {
     success: {
-      true:{
+      true: {
         backgroundColor: "$greenbg",
       }
     }
@@ -187,11 +187,11 @@ export default function Home(props: Url) {
   const [isLink, setIsLink] = useState(true);
 
 
-  useEffect(()=>{
-    setTimeout(()=>{
+  useEffect(() => {
+    setTimeout(() => {
       setIsLink(true)
     }, 2000)
-  },[isLink])
+  }, [isLink])
 
 
   const valideUrl = (params: string) => {
@@ -331,10 +331,10 @@ export default function Home(props: Url) {
               </ButtonStyled>
             </CardInput>
             <Spacer />
-            {!isLink &&  <CardCopy><Text  token="$purple500" as="p" text='URl invalida' /></CardCopy>}
+            {!isLink && <CardCopy><Text token="$purple500" as="p" text='URl invalida' /></CardCopy>}
             {shortLink && isLink &&
               <CardCopy>
-                <Text  token="$purple500" as="p" text={`${shortLink}`} />
+                <Text token="$purple500" as="p" text={`${shortLink}`} />
                 <ContentButtonIcon success={hasCopied} onClick={() => { copy(shortLink); setHasCopied(true); }}>
                   {hasCopied ? <CheckIcon width="20px" color="#41A777" /> : <CopyIcon width="20px" height="20px" color="#AA99EC" />}
                 </ContentButtonIcon>
