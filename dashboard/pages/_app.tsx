@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
+import { NextUIProvider } from '@nextui-org/react';
 import { darkTheme, globalStyles } from "../stitches.config";
 import { useEffect, useState } from "react";
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -22,14 +23,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     return <></>;
   } else {
     return (
-      <ThemeProvider
-        disableTransitionOnChange
-        attribute="class"
-        value={{ light: "light-theme", dark: darkTheme.className }}
-        defaultTheme="system"
-      >
+      <NextUIProvider >
         <Component {...pageProps} />
-      </ThemeProvider>
+      </NextUIProvider>
     );
   }
 }
