@@ -10,10 +10,9 @@ import {
 } from "@radix-ui/colors";
 
 import { createTheme, NextUIProvider } from "@nextui-org/react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 const lightTheme = createTheme({
-  type: "dark",
+  type: "light",
   theme: {
     colors: {
       ...gray,
@@ -158,7 +157,7 @@ const lightTheme = createTheme({
 });
 
 const darkTheme = createTheme({
-  type: "light",
+  type: "dark",
   theme: {
     colors: {
       ...gray,

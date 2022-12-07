@@ -4,8 +4,9 @@ export default function Home() {
 
   return (
     <Text css={{
-      color:'$blue700'
-    }}>teatsdfsdfrestes</Text>
+      color:'$blue700',
+      backgroundColor:'$pink700'
+    }}>teatsdfssdffffffffffffffffffffffffffffffffffffffffdfrestes</Text>
   );
 }
 
