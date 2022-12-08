@@ -5,6 +5,10 @@ import { Link2Icon, CopyIcon, CheckIcon } from "@radix-ui/react-icons";
 import { NavBar } from "../components/NavBar";
 import { BackgroundHome } from "../components/background";
 
+import { createClient } from '@supabase/supabase-js'
+
+
+
 const HomePage = styled("main", {
   position: "relative",
   height: "100vh",
@@ -45,6 +49,25 @@ const HomePage = styled("main", {
 });
 
 export default function Signin() {
+
+
+  const supabaseUrl = 'https://fwlazinpzlcjitewlyrv.supabase.co'
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3bGF6aW5wemxjaml0ZXdseXJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk1MTQwOTYsImV4cCI6MTk4NTA5MDA5Nn0.cKHB8ckycx3fhdEuN9xhnKBJy91Q-aojWMx4G1RCylw'
+  const supabase = createClient(supabaseUrl, supabaseKey)
+
+  async function signInWithGoogle() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+
+    console.log(data)
+  }
+
+
+  async function signout() {
+    const { error } = await supabase.auth.signOut()
+  }
+
   return (
     <HomePage >
 
@@ -72,7 +95,9 @@ export default function Signin() {
             <Input.Password label="Senha" placeholder=" Digite sua Senha" />
             <Spacer y={.2} />
             <Spacer y={1} />
-            <Button color="secondary">Entrar</Button>
+            <Button onClick={signInWithGoogle} color="secondary">Entrar</Button>
+
+            <Link href="https://fwlazinpzlcjitewlyrv.supabase.co/auth/v1/callback">google</Link>
           </Card.Body>
         </Card>
       </Container>

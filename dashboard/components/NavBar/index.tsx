@@ -18,11 +18,11 @@ export const NavBar = () => {
         {theme === "dark" ? <LogoDark /> : <LogoLigth />}
       </Navbar.Brand>
       <Navbar.Content>
-        <Navbar.Link color="inherit" href="#">
+        <Navbar.Link color="inherit" href="/signin">
           Login
         </Navbar.Link>
         <Navbar.Item>
-          <Button auto flat as={Link} href="#">
+          <Button auto flat as={Link} href="/signup">
             Sign Up
           </Button>
         </Navbar.Item>
