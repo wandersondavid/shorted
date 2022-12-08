@@ -1,5 +1,5 @@
+import { styled } from "@nextui-org/react";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { styled } from "@stitches/react";
 import { useTheme } from "next-themes";
 
 export const ThemeToggle = () => {

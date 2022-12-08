@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "@nextui-org/react";
 
 const Svg = styled("svg", {
   position: "absolute",
@@ -6,7 +6,6 @@ const Svg = styled("svg", {
   top: 200,
   right: 0,
   bottom: 0,
-  zIndex: -1,
   "@media (max-width: 600px)": {
     top: 200,
     right: 100,
