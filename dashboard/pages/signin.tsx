@@ -44,7 +44,7 @@ const HomePage = styled("main", {
   },
 });
 
-export default function Home() {
+export default function Signin() {
   return (
     <HomePage >
 
@@ -62,27 +62,18 @@ export default function Home() {
       }>
         <Card css={{ p: "$6", mw: "450px" }}>
           <Card.Header>
-            <Text h4 css={{ lineHeight: "$xs" }}>
+            <Text h4>
               Bem vindo!
             </Text>
           </Card.Header>
           <Card.Body css={{ py: "$6" }}>
-            <Input labelPlaceholder="E-mail" initialValue="nextui123" />
-            <Spacer y={1.6} />
-            <Input.Password labelPlaceholder="Senha" initialValue="nextui123" />
+            <Input label="E-mail" placeholder="Digite seu E-mail" />
+            <Spacer y={.6} />
+            <Input.Password label="Senha" placeholder=" Digite sua Senha" />
             <Spacer y={.2} />
-
             <Spacer y={1} />
             <Button color="secondary">Entrar</Button>
           </Card.Body>
-          <Card.Footer>
-            <Link
-              target="_blank"
-              href="https://github.com/nextui-org/nextui"
-            >
-              Visit source code on GitHub.
-            </Link>
-          </Card.Footer>
         </Card>
       </Container>
     </HomePage>
