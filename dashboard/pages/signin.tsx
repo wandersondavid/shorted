@@ -47,7 +47,7 @@ const HomePage = styled("main", {
 
 export default function Signin() {
 
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useAuth();
   return (
     <HomePage >
       <NavBar />
@@ -68,7 +68,7 @@ export default function Signin() {
             </Text>
           </Card.Header>
           <Card.Body css={{ py: "$6" }}>
-            <Button css={{ backgroundColor: "$gray300", color: "$gray800" }} icon={<GoogleIcon />}>
+            <Button onClick={signInWithGoogle} css={{ backgroundColor: "$gray300", color: "$gray800" }} icon={<GoogleIcon />}>
               Entrar com Google
             </Button>
             <Spacer y={1} />
@@ -78,8 +78,9 @@ export default function Signin() {
             <Input.Password label="Senha" placeholder=" Digite sua Senha" />
             <Spacer y={.2} />
             <Spacer y={1} />
-            <Button onClick={signInWithGoogle} color="secondary">Entrar</Button>
+            <Button onClick={signInWithEmail} color="secondary">Entrar</Button>
             <Link href="https://fwlazinpzlcjitewlyrv.supabase.co/auth/v1/callback">google</Link>
+            <Button onClick={signUpWithEmail} color="secondary">signUpWithEmail</Button>
           </Card.Body>
         </Card>
       </Container>
