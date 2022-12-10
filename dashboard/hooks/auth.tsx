@@ -25,8 +25,8 @@ type User = {
 type AuthContextData = {
   user: User;
   loading?: boolean;
-  signIn: () => Promise<void>;
-  signUp: () => Promise<void>;
+  signInWithEmail: () => Promise<void>;
+  signUpWithEmail: () => Promise<void>;
   signOut: () => Promise<void>;
   signInWithGoogle: () => Promise<void>;
 }
@@ -41,7 +41,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [user, setUser] = useState<User>({} as User)
   const [loading, setLoading] = useState(false);
-
+  console.log('------data--------->',NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_KEY)
   const supabase = createClient(NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_KEY)
 
   async function signInWithGoogle() {
@@ -51,28 +51,32 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   }
 
+  async function signInWithEmail() {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: 'example@email.com',
+      password: 'example-pass5word',
+    })
 
-  const signIn = async () => {
-    try {
-      setLoading(true);
-
-    } catch {
-      throw new Error("Não autorizado");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const signOut = async () => {
-    setUser({} as User);
-  }
-
-  const signUp = async () => {
-    setUser({} as User);
+    console.log('------data--------->',data)
+    console.log('--------error------->',error)
   }
 
 
-  async function signout() {
+  const signUpWithEmail = async () => {
+
+
+    const { data, error } = await supabase.auth.signUp({
+      email: 'example@email.com',
+      password: 'example-password',
+    })
+
+   
+    console.log('------data--------->',data)
+    console.log('--------error------->',error)
+  }
+
+
+  async function signOut() {
     const { error } = await supabase.auth.signOut()
   }
   const loadUserStorageData = async () => {
@@ -86,9 +90,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   return (
     <AuthContext.Provider value={{
       user,
-      signIn,
+      signInWithEmail,
       loading,
-      signUp,
+      signUpWithEmail,
       signOut,
       signInWithGoogle
     }}
