@@ -3,6 +3,7 @@ import {  NextUIProvider } from "@nextui-org/react"
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { darkTheme, lightTheme } from "../theme.config";
 import { useEffect, useState } from "react";
+import { AuthProvider } from "../hooks/auth";
 export default function MyApp({ Component, pageProps }: AppProps) {
   // globalStyles();
     return (
@@ -15,7 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         }}
       >
         <NextUIProvider>
-          <Component {...pageProps} />
+          <AuthProvider>
+            <Component {...pageProps} />
+          </AuthProvider>
         </NextUIProvider>
       </NextThemesProvider>
     );
