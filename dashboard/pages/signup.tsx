@@ -3,6 +3,8 @@ import React from "react";
 import { Grid, Link, Text, Card, Container, Input, Spacer, Button, styled } from "@nextui-org/react";
 import { NavBar } from "../components/NavBar";
 import { BackgroundHome } from "../components/background";
+import { useAuth } from "../hooks/auth";
+import { GoogleIcon } from "../components/icons/google";
 
 const HomePage = styled("main", {
   position: "relative",
@@ -44,10 +46,10 @@ const HomePage = styled("main", {
 });
 
 export default function Signup() {
+  const { signInWithGoogle, signUpWithEmail } = useAuth();
+
   return (
     <HomePage >
-
-
       <NavBar />
       <BackgroundHome />
       <Container css={
@@ -61,19 +63,24 @@ export default function Signup() {
       }>
         <Card css={{ p: "$6", mw: "450px" }}>
           <Card.Header>
-            <Text h4 >
+            <Text h4 css={{color:'$gray800'}}>
               Bem vindo!
             </Text>
           </Card.Header>
           <Card.Body css={{ py: "$6" }}>
+            <Button onClick={signInWithGoogle} css={{ backgroundColor: "$gray300", color: "$gray800" }} icon={<GoogleIcon />}>
+              Cadastrar com Google
+            </Button>
+            <Spacer y={1} />
+            <Text css={{width: '100%', textAlign: 'center', color:'$gray700'}}>- Ou -</Text>
             <Input label="E-mail" placeholder="Digite seu E-mail" />
             <Spacer y={.6} />
-            <Input.Password label="Senha" placeholder=" Digite sua Senha" />
+            <Input.Password label="Senha" placeholder="Digite sua Senha" />
             <Spacer y={.6} />
-            <Input.Password label="Senha" placeholder=" Digite sua Senha" />
+            <Input.Password label="Confirme sua senha" placeholder="Digite sua Senha novamente" />
             <Spacer y={.2} />
             <Spacer y={1} />
-            <Button color="secondary">Entrar</Button>
+            <Button onClick={signUpWithEmail} color="secondary">Cadastra</Button>
           </Card.Body>
         </Card>
       </Container>

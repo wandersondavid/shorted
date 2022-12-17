@@ -48,7 +48,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
     });
-
   }
 
   async function signInWithEmail() {
@@ -71,6 +70,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   async function signOut() {
     const { error } = await supabase.auth.signOut();
   }
+
   const loadUserStorageData = async () => {
 
   }
