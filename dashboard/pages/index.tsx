@@ -2,6 +2,7 @@
 import React from "react";
 import { Navbar, Button, Link, Text, Card, Radio } from "@nextui-org/react";
 import { LogoLigth } from "../components/icons/Logo";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
 
 export default function Home() {
@@ -32,3 +33,22 @@ export default function Home() {
   )
 }
 
+
+export const getServerSideProps:GetServerSideProps = async (ctx:GetServerSidePropsContext) => {
+
+  const {req} = ctx;
+  const { user }  = {user : ''};
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: { user },
+  }
+}
