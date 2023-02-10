@@ -12,8 +12,10 @@
     "start": "npm run start:dev",
     "start:prod": "npm run build && pm2 start dist/src/index.js --name short-me",
     "studio": "npx prisma studio",
-    "docker:up": "docker-compose up -d",
+    "docker:up-d": "docker-compose up -d",
+    "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs",
     "docker:destroy": "docker-compose down --volumes --remove-orphans"
   },
   "keywords": [],
