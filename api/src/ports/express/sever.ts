@@ -1,11 +1,8 @@
 import express from "express";
 import cors from "cors";
-import {
-  HandlerError,
-  HandlerErrorNotFound,
-  shortUrlRoutes,
-} from "./modules";
 import timeout from "connect-timeout";
+import { shortUrlRoutes } from "./modules";
+import { HandlerError, HandlerErrorNotFound } from "./modules";
 
 const PORT = process.env["PORT"];
 const app = express();
@@ -17,9 +14,9 @@ app.use(cors());
 
 app.use("/api/v1", shortUrlRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Sever is listenin on port ${PORT}`);
-});
-
 app.use(HandlerErrorNotFound);
 app.use(HandlerError);
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
