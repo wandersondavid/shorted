@@ -106,3 +106,5 @@ dist
 app-web/package-lock.json
 
 app-web/yarn.lock
+
+*.env

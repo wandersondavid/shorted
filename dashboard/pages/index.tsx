@@ -4,8 +4,16 @@ import { Navbar, Button, Link, Text, Card, Radio } from "@nextui-org/react";
 import { LogoLigth } from "../components/icons/Logo";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
-
+import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 export default function Home() {
+  
+  const session = useSession()
+  const supabase = useSupabaseClient()
+
+  console.log('-----------------',session, supabase )
+
+  console.log(session, supabase)
   return (
     <>
       <Navbar>
@@ -37,18 +45,18 @@ export default function Home() {
 export const getServerSideProps:GetServerSideProps = async (ctx:GetServerSidePropsContext) => {
 
   const {req} = ctx;
-  const { user }  = {user : ''};
+  // const { user }  = {user : ''};
 
-  if (!user) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    }
-  }
+  // // if (!user) {
+  //   return {
+  //     redirect: {
+  //       destination: '/signin',
+  //       permanent: false,
+  //     },
+  //   }
+  // // }
 
   return {
-    props: { user },
+    props: {  },
   }
 }
