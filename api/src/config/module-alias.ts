@@ -1,4 +1,4 @@
 import { join } from 'path'
-import moduleAlias from 'module-alias'
+import {addAlias} from 'module-alias'
 
-moduleAlias.addAlias('@', join(__dirname, '..'))
+addAlias('@', join(__dirname, '..'))
