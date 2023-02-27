@@ -1,7 +1,7 @@
 import { sum } from "./index";
 
 describe('sum module', () => {
-it('test sun', () => {
+    it('test sun', () => {
         expect(sum(1, 2)).toBe(3)
     })
 

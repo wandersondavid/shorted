@@ -1,10 +1,17 @@
-import * as t from "io-ts";
+import * as t from 'io-ts'
+import { withMessage } from 'io-ts-types'
 
-const Password = t.brand(
-  t.string,
-  (s): s is t.Branded<string, { readonly Password: unique symbol }> =>
-    s.length >= 8 && /[A-Z]/.test(s) && /[a-z]/.test(s) && /\d/.test(s),
-  "Password"
-);
+type PasswordBrand = {
+  readonly Password: unique symbol
+}
 
-export default Password;
+export const passwordCodec = withMessage(
+  t.brand(
+    t.string,
+    (value): value is t.Branded<string, PasswordBrand> => value.length >= 8,
+    'Password',
+  ),
+  () => 'Password should be at least 8 characters long.',
+)
+
+export type Password = t.TypeOf<typeof passwordCodec>
