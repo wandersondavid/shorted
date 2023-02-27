@@ -1,7 +1,7 @@
 import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
 import { mapAll, getErrorMessage } from '@/config/tests/fixtures'
-import { slugCodec } from './slug'
+import { slugCodec } from '.'
 
 it('Should validate slug properly', async () => {
   return pipe(

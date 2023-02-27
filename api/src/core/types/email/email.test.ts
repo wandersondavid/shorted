@@ -1,7 +1,7 @@
 import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
 import { mapAll, getErrorMessage } from '@/config/tests/fixtures'
-import { emailCodec } from './email'
+import { emailCodec } from '.'
 
 it('Should validate the email properly', async () => {
   return pipe(

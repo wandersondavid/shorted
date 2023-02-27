@@ -1,6 +1,6 @@
 import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
-import { passwordCodec } from './password'
+import { passwordCodec } from '.'
 import { mapAll, getErrorMessage } from '@/config/tests/fixtures'
 
 it('Should validate password properly', async () => {

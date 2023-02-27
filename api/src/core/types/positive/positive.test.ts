@@ -1,6 +1,6 @@
 import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
-import { positiveCodec } from './positive'
+import { positiveCodec } from '.'
 import { mapAll, getErrorMessage } from '@/config/tests/fixtures'
 
 it('Should validate positive number properly', async () => {

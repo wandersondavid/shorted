@@ -1,7 +1,7 @@
 import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
 import { mapAll, getErrorMessage } from '@/config/tests/fixtures'
-import { urlCodec } from './url'
+import { urlCodec } from '.'
 
 it('Should validate the URL properly', async () => {
   return pipe(

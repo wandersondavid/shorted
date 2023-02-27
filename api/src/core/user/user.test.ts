@@ -8,6 +8,4 @@ describe('sum module', () => {
     it('test sun rree', () => {
         expect(sum(1, 1)).toBe(2)
     })
-
-
 })

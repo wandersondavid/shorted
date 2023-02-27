@@ -1,6 +1,6 @@
 import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
-import { dateCodec } from './date'
+import { dateCodec } from '.'
 import { mapAll, getErrorMessage } from '@/config/tests/fixtures'
 
 it('Should validate date properly', async () => {
