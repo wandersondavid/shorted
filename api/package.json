@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "model": "npx prisma introspect && npx prisma generate",
     "dev": "ts-node-dev src/index.ts",
     "build": "rimraf ./build && tsc",
@@ -16,7 +15,12 @@
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs",
-    "docker:destroy": "docker-compose down --volumes --remove-orphans"
+    "docker:destroy": "docker-compose down --volumes --remove-orphans",
+    "test": "yarn test:unit && yarn test:integration",
+    "test:unit": "jest",
+    "test:watch": "jest --watch",
+    "test:integration": "jest --passWithNoTests --config jest.config.integration.js",
+    "test:integration:watch": "yarn test:integration --watch"
   },
   "keywords": [],
   "author": "",
