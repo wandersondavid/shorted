@@ -15,10 +15,6 @@ type ValidateCodec = <A, O, I>(codec: Type<A, O, I>) =>
     (data: I) => E.Either<ValidationError, O>
 
 export const validateCodec: ValidateCodec = (codec) => (data) => {
-
-    console.log('------------', codec);
-    console.log('------------', data);
-
     return pipe(
         codec.decode(data),
         E.map(codec.encode),
