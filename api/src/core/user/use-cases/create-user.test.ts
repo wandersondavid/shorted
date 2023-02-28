@@ -3,9 +3,8 @@ import { pipe } from 'fp-ts/function'
 import { mapAll } from '@/config/tests/fixtures'
 import { CreateUserType } from "../types"
 
-
 const registerOk: OutsideCreateUser<string> = async (data) => {
-    return `Usuário ${data.username} cadastrado com sucesso!`
+    return `User ${data.username} create whit success!`
 }
 
 function unsafe <T> (value: unknown): T {
@@ -18,14 +17,12 @@ const data: CreateUserType = {
     password: unsafe('jhon123!'),
 }
 
-
-describe('Creat User', () => {
-
+describe('Create User', () => {
     it('Should register a user properly', async () => {
         return pipe(
             data,
             createUser(registerOk),
-            mapAll(result => expect(result).toBe(`Usuário ${data.username} cadastrado com sucesso!`)),
+            mapAll(result => expect(result).toBe(`User ${data.username} create whit success!`)),
         )()
     })
 })

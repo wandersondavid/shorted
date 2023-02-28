@@ -32,5 +32,4 @@ export const createUser: CreateUser = (outsideCreateUser) => (data) => {
             E.toError,
         ))
     )
-
 }
